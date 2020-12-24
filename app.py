@@ -9,6 +9,7 @@ CORS(app)
 # cfg は全て大文字
 app.config.from_pyfile('config.cfg')
 
+
 # mariadb_connection = db.connect(host='localhost', user='ryu', password='reina001', database='ryu_db')
 # cursor = mariadb_connection.cursor()
 # cursor.execute(
@@ -19,16 +20,21 @@ app.config.from_pyfile('config.cfg')
 @app.route('/rin_jin/')
 def hello_world():
     print(app.config["SERVER"])
-    return 'Hello World!'
+    db_connection = db.connect(host=app.config["HOST"], user=app.config["USER"], password=app.config["PASSWORD"], database=app.config["DATABASE"])
+    cursor = db_connection.cursor()
+    cursor.execute(
+        "select * from word_table")
+    word_table = cursor.fetchall()
+
+    return render_template("index.html", word_table=word_table)
 
 
 @app.route("/rin_jin/insert", methods=["POST"])
 def insert_db():
-    name= request.form["name"]
+    name = request.form["name"]
     sentences = request.form["sentences"]
     return "ok"
 
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
-
