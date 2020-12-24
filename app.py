@@ -56,5 +56,19 @@ def edit_show(Id):
     return render_template("form.html", word_table=word_table)
 
 
+@app.route("/rin_jin/update", methods=["POST"])
+def update_db():
+    db_connection = db.connect(host=app.config["HOST"], user=app.config["USER"], password=app.config["PASSWORD"], database=app.config["DATABASES"])
+    ID = request.form["id"]
+    name = request.form["name"]
+    sentences = request.form["sentences"]
+
+    # cursor = db_connection.cursor()
+    # cursor.execute(
+    #     "update word_table set  where id ={}".format(ID))
+
+    return redirect("https://reina-raft.xyz/rin_jin/", code=302)
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
