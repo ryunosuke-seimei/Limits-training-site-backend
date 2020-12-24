@@ -44,7 +44,7 @@ def insert_db():
     return redirect("https://reina-raft.xyz/rin_jin/", code=302)
 
 
-@app.route("/rin_jin/edit/<Id>", methods=["GET"])
+@app.route("/rin_jin/edit/<Id>/", methods=["GET"])
 def edit_show(Id):
     print(Id)
     ID = int(Id)
@@ -56,7 +56,7 @@ def edit_show(Id):
     return render_template("form.html", word_table=word_table)
 
 
-@app.route("/rin_jin/update", methods=["POST"])
+@app.route("/rin_jin/update/", methods=["POST"])
 def update_db():
     db_connection = db.connect(host=app.config["HOST"], user=app.config["USER"], password=app.config["PASSWORD"], database=app.config["DATABASES"])
     ID = request.form["id"]
@@ -70,7 +70,7 @@ def update_db():
     return redirect("https://reina-raft.xyz/rin_jin/", code=302)
 
 
-@app.route("/rin_jin/delete", methods=["POST"])
+@app.route("/rin_jin/delete/", methods=["POST"])
 def delete_db():
     db_connection = db.connect(host=app.config["HOST"], user=app.config["USER"], password=app.config["PASSWORD"], database=app.config["DATABASES"])
     ID = request.form["id"]
