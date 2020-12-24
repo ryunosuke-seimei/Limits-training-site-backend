@@ -7,15 +7,23 @@
 <body>
 {% if word_table|length==0 %}
     new
+    <form action = "/rin_jin/insert/" method = "POST">
+        <h3>POST通信</h3>
+        <p><input type="text" name="name" size="50" minlength="3" maxlength="1000"></p>
+        <p><input type="text" name="sentences" size="50" minlength="3" maxlength="1000"></p>
+        <p><input class="button" type="submit" value="POST通信でoutputページを開く"></p>
+    </form>
 {% else %}
     edit
+    <form action = "/rin_jin/update/" method = "POST">
+        <h3>POST通信</h3>
+        <p><input type="hidden" name="id" size="50" minlength="3" maxlength="1000"></p>
+        <p><input type="text" name="name" size="50" minlength="3" maxlength="1000"></p>
+        <p><input type="text" name="sentences" size="50" minlength="3" maxlength="1000"></p>
+        <p><input class="button" type="submit" value="POST通信でoutputページを開く"></p>
+    </form>
 {% endif %}
-<form action = "/rin_jin/insert/" method = "POST">
-<h3>POST通信</h3>
-<p><input type="text" name="name" size="50" minlength="3" maxlength="1000"></p>
-<p><input type="text" name="sentences" size="50" minlength="3" maxlength="1000"></p>
-<p><input class="button" type="submit" value="POST通信でoutputページを開く"></p>
-</form>
+
 
 </body>
 </html>

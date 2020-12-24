@@ -70,5 +70,17 @@ def update_db():
     return redirect("https://reina-raft.xyz/rin_jin/", code=302)
 
 
+@app.route("/rin_jin/delete", methods=["POST"])
+def update_db():
+    db_connection = db.connect(host=app.config["HOST"], user=app.config["USER"], password=app.config["PASSWORD"], database=app.config["DATABASES"])
+    ID = request.form["id"]
+    print(ID)
+    # cursor = db_connection.cursor()
+    # cursor.execute(
+    #     "update word_table set  where id ={}".format(ID))
+
+    return redirect("https://reina-raft.xyz/rin_jin/", code=302)
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
