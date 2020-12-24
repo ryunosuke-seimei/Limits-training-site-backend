@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect
 from flask_cors import CORS
 import mysql.connector as db
 
@@ -29,18 +29,19 @@ def hello_world():
     return render_template("index.html", word_table=word_table)
 
 
-@app.route('/rin_jin/create', methods=["GET"])
+@app.route('/rin_jin/create/', methods=["GET"])
 def get_some_path():
     return render_template("form.html")
 
 
-@app.route("/rin_jin/insert", methods=["POST"])
+@app.route("/rin_jin/insert/", methods=["POST"])
 def insert_db():
     name = request.form["name"]
     sentences = request.form["sentences"]
     print(name)
     print(sentences)
-    return "ok"
+
+    return redirect("https://reina-raft.xyz/rin_jin/", code=302)
 
 
 if __name__ == '__main__':
