@@ -20,7 +20,7 @@ app.config.from_pyfile('config.cfg')
 @app.route('/rin_jin/')
 def hello_world():
     print(app.config["SERVER"])
-    db_connection = db.connect(host=app.config["HOST"], user=app.config["USER"], password=app.config["PASSWORD"], database=app.config["DATABASE"])
+    db_connection = db.connect(host=app.config["HOST"], user=app.config["USER"], password=app.config["PASSWORD"], database=app.config["DATABASES"])
     cursor = db_connection.cursor()
     cursor.execute(
         "select * from word_table")
