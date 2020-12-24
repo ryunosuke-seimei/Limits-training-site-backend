@@ -44,7 +44,7 @@ def insert_db():
     return redirect("https://reina-raft.xyz/rin_jin/", code=302)
 
 
-@app.route("/rin_jin/edit/<Id>", methods=["POST"])
+@app.route("/rin_jin/edit/<Id>", methods=["GET"])
 def edit_show(Id):
     print(Id)
     ID = int(Id)
@@ -54,7 +54,6 @@ def edit_show(Id):
         "select * from word_table where id ={}".format(ID))
     word_table = cursor.fetchone()
     return render_template("form.html", word_table=word_table)
-
 
 
 if __name__ == '__main__':
