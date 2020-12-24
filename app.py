@@ -71,7 +71,7 @@ def update_db():
 
 
 @app.route("/rin_jin/delete", methods=["POST"])
-def update_db():
+def delete_db():
     db_connection = db.connect(host=app.config["HOST"], user=app.config["USER"], password=app.config["PASSWORD"], database=app.config["DATABASES"])
     ID = request.form["id"]
     print(ID)
