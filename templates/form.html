@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-{% if len(word_table)==1 %}
+{% if word_table|length==0 %}
     new
 {% else %}
     edit
