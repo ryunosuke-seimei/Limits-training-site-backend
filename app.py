@@ -31,7 +31,7 @@ def hello_world():
 
 @app.route('/rin_jin/create', methods=["GET"])
 def get_some_path():
-    render_template("form.html")
+    return render_template("form.html")
 
 
 @app.route("/rin_jin/insert", methods=["POST"])
