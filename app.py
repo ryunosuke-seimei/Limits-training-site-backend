@@ -29,10 +29,17 @@ def hello_world():
     return render_template("index.html", word_table=word_table)
 
 
+@app.route('/rin_jin/create', methods=["GET"])
+def get_some_path():
+    render_template("form.html")
+
+
 @app.route("/rin_jin/insert", methods=["POST"])
 def insert_db():
     name = request.form["name"]
     sentences = request.form["sentences"]
+    print(name)
+    print(sentences)
     return "ok"
 
 
