@@ -82,5 +82,11 @@ def delete_db():
     return redirect("https://reina-raft.xyz/rin_jin/", code=302)
 
 
+@app.route("/rin_jin/limits/", methods=["GET"])
+def limits():
+    return render_template("limits.html")
+
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
