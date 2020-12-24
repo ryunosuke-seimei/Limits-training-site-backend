@@ -40,8 +40,21 @@ def insert_db():
     sentences = request.form["sentences"]
     print(name)
     print(sentences)
-
+    # インサート
     return redirect("https://reina-raft.xyz/rin_jin/", code=302)
+
+
+@app.route("/rin_jin/edit/<Id>", methods=["POST"])
+def edit_show(Id):
+    print(Id)
+    ID = int(Id)
+    db_connection = db.connect(host=app.config["HOST"], user=app.config["USER"], password=app.config["PASSWORD"], database=app.config["DATABASES"])
+    cursor = db_connection.cursor()
+    cursor.execute(
+        "select * from word_table where id ={}".format(ID))
+    word_table = cursor.fetchone()
+    return render_template("form.html", word_table=word_table)
+
 
 
 if __name__ == '__main__':
