@@ -10,21 +10,40 @@
     <form action = "/rin_jin/insert/" method = "POST">
         <h3>POST通信</h3>
         <p><input type="text" name="name" size="50" minlength="3" maxlength="1000"></p>
-        <p><input type="text" name="sentences" size="50" minlength="3" maxlength="1000"></p>
+        <p><input type="text" name="form0" size="50" minlength="3" maxlength="1000"></p>
+        <p><input type="text" name="form1" size="50" minlength="3" maxlength="1000"></p>
+        <p><input type="text" name="form2" size="50" minlength="3" maxlength="1000"></p>
+        <p><input type="text" name="form3" size="50" minlength="3" maxlength="1000"></p>
+        <p><input type="text" name="form4" size="50" minlength="3" maxlength="1000"></p>
+        <p><input type="text" name="form5" size="50" minlength="3" maxlength="1000"></p>
+        <p><input type="text" name="form6" size="50" minlength="3" maxlength="1000"></p>
+        <p><input type="text" name="form7" size="50" minlength="3" maxlength="1000"></p>
+        <p><input type="text" name="form8" size="50" minlength="3" maxlength="1000"></p>
+        <p><input type="text" name="form9" size="50" minlength="3" maxlength="1000"></p>
         <p><input class="button" type="submit" value="POST通信でoutputページを開く"></p>
     </form>
 {% else %}
     edit
+    {{ word_table }}
     <form action = "/rin_jin/update/" method = "POST">
         <h3>POST通信</h3>
-        <p><input type="hidden" name="id" size="50" minlength="3" maxlength="1000"></p>
-        <p><input type="text" name="name" size="50" minlength="3" maxlength="1000"></p>
-        <p><input type="text" name="sentences" size="50" minlength="3" maxlength="1000"></p>
+        <p><input type="hidden" name="id" size="50" minlength="3" maxlength="1000" value="{{ word_table[0] }}"></p>
+        <p><input type="text" name="name" size="50" minlength="3" maxlength="1000" value="{{ word_table[1] }}"></p>
+        <p><input type="text" name="form0" size="50" minlength="3" maxlength="1000" value="{{ word_table[2] }}"></p>
+        <p><input type="text" name="form1" size="50" minlength="3" maxlength="1000" value="{{ word_table[3] }}"></p>
+        <p><input type="text" name="form2" size="50" minlength="3" maxlength="1000" value="{{ word_table[4] }}"></p>
+        <p><input type="text" name="form3" size="50" minlength="3" maxlength="1000" value="{{ word_table[5] }}"></p>
+        <p><input type="text" name="form4" size="50" minlength="3" maxlength="1000" value="{{ word_table[6] }}"></p>
+        <p><input type="text" name="form5" size="50" minlength="3" maxlength="1000" value="{{ word_table[7] }}"></p>
+        <p><input type="text" name="form6" size="50" minlength="3" maxlength="1000" value="{{ word_table[8] }}"></p>
+        <p><input type="text" name="form7" size="50" minlength="3" maxlength="1000" value="{{ word_table[9] }}"></p>
+        <p><input type="text" name="form8" size="50" minlength="3" maxlength="1000" value="{{ word_table[10] }}"></p>
+        <p><input type="text" name="form9" size="50" minlength="3" maxlength="1000" value="{{ word_table[11] }}"></p>
         <p><input class="button" type="submit" value="POST通信でoutputページを開く"></p>
     </form>
         <form action = "/rin_jin/delete/" method = "POST">
         <h3>POST通信</h3>
-        <p><input type="hidden" name="id" size="50" minlength="3" maxlength="1000"></p>
+        <p><input type="hidden" name="id" size="50" minlength="3" maxlength="1000" value="{{ word_table[0] }}"></p>
         <p><input class="button" type="submit" value="POST通信でoutputページを開く"></p>
     </form>
 {% endif %}
