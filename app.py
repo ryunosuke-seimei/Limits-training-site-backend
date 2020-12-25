@@ -45,7 +45,7 @@ def insert_db():
     print(name)
     print(sentences)
     # インサート
-    return redirect("https://reina-raft.xyz/rin_jin/", code=302)
+    return redirect("https://reina-raft.xyz/rin_jin/index/", code=302)
 
 
 @app.route("/rin_jin/edit/<Id>/", methods=["GET"])
@@ -71,7 +71,7 @@ def update_db():
     # cursor.execute(
     #     "update word_table set  where id ={}".format(ID))
 
-    return redirect("https://reina-raft.xyz/rin_jin/", code=302)
+    return redirect("https://reina-raft.xyz/rin_jin/index/", code=302)
 
 
 @app.route("/rin_jin/delete/", methods=["POST"])
@@ -83,7 +83,7 @@ def delete_db():
     # cursor.execute(
     #     "update word_table set  where id ={}".format(ID))
 
-    return redirect("https://reina-raft.xyz/rin_jin/", code=302)
+    return redirect("https://reina-raft.xyz/rin_jin/index/", code=302)
 
 
 @app.route("/rin_jin/limits/", methods=["GET"])
