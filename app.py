@@ -16,8 +16,12 @@ app.config.from_pyfile('config.cfg')
 #     "INSERT INTO temp_sentence(LINE_id, sentence) values(%s, %s)", (user_id, message))
 # mariadb_connection.commit()
 
-
 @app.route('/rin_jin/')
+def hello_world():
+    return render_template("top.html")
+
+
+@app.route('/rin_jin/index/')
 def hello_world():
     print(app.config["SERVER"])
     db_connection = db.connect(host=app.config["HOST"], user=app.config["USER"], password=app.config["PASSWORD"], database=app.config["DATABASES"])
