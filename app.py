@@ -22,7 +22,7 @@ def hello_world():
 
 
 @app.route('/rin_jin/index/')
-def hello_world():
+def index():
     print(app.config["SERVER"])
     db_connection = db.connect(host=app.config["HOST"], user=app.config["USER"], password=app.config["PASSWORD"], database=app.config["DATABASES"])
     cursor = db_connection.cursor()
