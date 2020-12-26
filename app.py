@@ -17,7 +17,7 @@ def hello_world():
 
 @app.route('/rin_jin/index/')
 def index():
-    print(app.config["SERVER"])
+    # print(app.config["SERVER"])
     db_connection = db.connect(host=app.config["HOST"], user=app.config["USER"], password=app.config["PASSWORD"],
                                database=app.config["DATABASES"])
     cursor = db_connection.cursor()
@@ -106,7 +106,13 @@ def delete_db():
 
 @app.route("/rin_jin/limits/", methods=["GET"])
 def limits():
-    return render_template("limits.html")
+    db_connection = db.connect(host=app.config["HOST"], user=app.config["USER"], password=app.config["PASSWORD"],
+                               database=app.config["DATABASES"])
+    cursor = db_connection.cursor()
+    cursor.execute(
+        "select * from word_table")
+    word_table = cursor.fetchall()
+    return render_template("limits.html", word_table)
 
 
 if __name__ == '__main__':
