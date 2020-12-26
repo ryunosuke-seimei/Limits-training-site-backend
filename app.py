@@ -112,7 +112,8 @@ def limits():
     cursor.execute(
         "select * from word_table")
     word_table = cursor.fetchall()
-    return render_template("limits.html", word_table)
+
+    return render_template("limits.html", word_table=word_table)
 
 
 if __name__ == '__main__':
