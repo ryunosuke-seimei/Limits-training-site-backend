@@ -28,10 +28,6 @@ def index():
     return render_template("index.html", word_table=word_table)
 
 
-@app.route('/rin_jin/create/', methods=["GET"])
-def get_some_path():
-    return render_template("form.html")
-
 
 @app.route("/rin_jin/insert/", methods=["POST"])
 def insert_db():

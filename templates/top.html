@@ -3,10 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kosugi&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home_style.css') }}">
+
 </head>
 <body>
-    <a href="index/">index</a>
-    <a href="limits/">limits</a>
+    <section>
+        <div class="top">
+            <span>LIMITS</span>
+        </div>
+        <div class="bottom">
+            <a href="index/">アイテム入力</a>
+            <a href="limits/">競技会場</a>
+        </div>
+    </section>
 
 </body>
 </html>

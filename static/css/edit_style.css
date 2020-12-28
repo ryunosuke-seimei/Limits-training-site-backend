@@ -1,0 +1,93 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: 'Staatliches', cursive;
+}
+section {
+  display: inline-flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100vh;
+}
+section .left{
+  display: inline-flex;
+  flex-direction: column;
+  width: 250px;
+  height: 100%;
+  border-right: 5px solid black;
+  box-sizing: border-box;
+}
+section .right{
+  display: inline-flex;
+  flex-direction: column;
+  width: calc(100% - 250px);
+  height: 100%;
+}
+
+h3{
+  display: inline-block;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  font-size: 45px;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.left form{
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+  height: calc(100% - 55px);
+  margin-top: 20px;
+  /* background-color: red; */
+}
+.left form input{
+  width: 80%;
+  border: none;
+  border-bottom: 1.5px solid black;
+  outline: none;
+  box-sizing: content-box;
+  padding: 0 5px;
+  padding-top: 5px;
+  font-size: 20px;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.left form .button{
+  display: inline-block;
+  margin-top: 40px;
+  color: white;
+  background-color: black;
+  border: 2.5px solid gray;
+}
+
+.right form .button{
+
+  width: 80%;
+  border: none;
+  border-bottom: 1.5px solid black;
+  outline: none;
+  box-sizing: content-box;
+  padding: 0 5px;
+  padding-top: 5px;
+  font-size: 20px;
+  margin-left: 10px;
+
+  display: inline-block;
+  margin-top: 40px;
+  color: white;
+  background-color: black;
+  border: 2.5px solid gray;
+}
+.right .content{
+  display: inline-block;
+  width: 100%;
+  height: auto;
+}
+.right .content .filed{
+  display: inline-block;
+  width: 100%;
+  height: calc(100vh - 350px);
+
+}
