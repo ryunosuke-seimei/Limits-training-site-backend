@@ -116,5 +116,14 @@ def limits():
     return render_template("limits.html", word_table=word_table)
 
 
+@app.route("/rin_jin/limits/start/", methods=["POST"])
+def limits_start():
+    left = request.form["left"]
+    right = request.form["right"]
+    word_table = [left, right]
+    print(word_table)
+    return render_template("start.html", word_table=word_table)
+
+
 if __name__ == '__main__':
     app.run(host=app.config["HOST"])

@@ -26,11 +26,21 @@ limits 会場
         <input type="radio" name="flag" value="0" onchange="flag_check();" checked> 左
         <input type="radio" name="flag" value="1" onchange="flag_check();"> 右
     </div>
+
     <div class="target_left">
 
     </div>
     <div class="target_right">
 
+    </div>
+     <form action = "start/" method = "POST">
+            <p><input type="hidden" class="target_left" name="left" size="50" minlength="3" maxlength="1000"></p>
+            <p><input type="hidden" class="target_right" name="right" size="50" minlength="3" maxlength="1000"></p>
+            <p><input class="button" type="submit" value="POST通信でoutputページを開く"></p>
+    </form>
+
+    <div class="send">
+        <a href="start/">send</a>
     </div>
 </body>
 </html>

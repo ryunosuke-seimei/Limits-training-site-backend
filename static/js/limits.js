@@ -12,8 +12,10 @@ window.onload=function(){
 
         if(flag===0){
             $(".target_left").text(name);
+            $(".target_left").val(name);
         }else {
             $(".target_right").text(name);
+            $(".target_right").val(name);
         }
 
     }
