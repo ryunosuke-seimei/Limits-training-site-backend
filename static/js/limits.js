@@ -5,6 +5,7 @@ window.onload=function(){
 
         let target =$($(this).children(".sentence"));
         let span = target.children("span");
+        let id = $(span[0]).text();
         let name = $(span[1]).text();
         for (let i=2;i<span.length;i++){
             console.log($(span[i]).text());
@@ -12,10 +13,10 @@ window.onload=function(){
 
         if(flag===0){
             $(".target_left").text(name);
-            $(".target_left").val(name);
+            $(".target_left").val(id);
         }else {
             $(".target_right").text(name);
-            $(".target_right").val(name);
+            $(".target_right").val(id);
         }
 
     }
