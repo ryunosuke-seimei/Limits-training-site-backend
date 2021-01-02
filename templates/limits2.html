@@ -1,0 +1,87 @@
+<html lang="ja">
+
+<head>
+  <meta chareset="UTF-8">
+  <title>ルーレット</title>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/limits1.js') }}"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+
+<body>
+  <header>
+    <div class="title">
+      LIMITS
+    </div>
+    <div class="sub-title">
+      <li>Item</li>
+      <li>Roullet</li>
+    </div>
+  </header>
+  <section>
+    <div class="fase lits-select">
+      <div class="left">
+
+        <div class="selects">
+
+        </div>
+        <div class="bords">
+          <div class="bord">
+
+          </div>
+          <div class="brod">
+
+          </div>
+        </div>
+      </div>
+      <div class="right">
+            {% for number in range(word_table|length) %}
+                <div class="card">
+                    <input type="hidden" value="{{ number }}">
+                    <div class="title">
+                        {{ word_table[number][1] }}
+                    </div>
+                    <div class="content">
+                        {% for word in word_table[number] %}
+                            <li>{{ word }}</li>
+                        {% endfor %}
+                    </div>
+                </div>
+
+            {% endfor %}
+      </div>
+
+    </div>
+
+    <div class="fase word-select">
+      <div class="rand_area">
+        <div class="rand_name1 box"></div>
+        <div class="rand_name2 box"></div>
+      </div>
+      <button type="button" class="stop">ストップ</button>
+      <button type="button" class="start">スタート</button>
+
+      <div class="select_timer">
+        <li>3 min       <input type="hidden" value="3"></li>
+        <li>5 min       <input type="hidden" value="5"></li>
+        <li>10 min      <input type="hidden" value="10"></li>
+        <li>20 min      <input type="hidden" value="20"></li>
+        <li>30 min      <input type="hidden" value="30"></li>
+      </div>
+
+    </div>
+    <div class="fase limits">
+      <div class="timerbody">
+        <div id="timer"></div>
+        <button type="buttons" class="stopbutton" style="display:none;">STOP</button>
+        <button type="buttons" class="startbutton">STRAT</button>
+        <button id="resetbutton">reset</button>
+      </div>
+    </div>
+  </section>
+  <div class="bottom">
+    <li>back</li>
+    <li>select</li>
+  </div>
+</body>
+
+</html>

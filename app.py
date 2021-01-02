@@ -28,7 +28,6 @@ def index():
     return render_template("index.html", word_table=word_table)
 
 
-
 @app.route("/rin_jin/insert/", methods=["POST"])
 def insert_db():
     name = request.form["name"]
@@ -98,6 +97,18 @@ def delete_db():
     db_connection.commit()
 
     return redirect("https://reina-raft.xyz/rin_jin/index/", code=302)
+
+
+@app.route("/rin_jin/limits1/", methods=["GET"])
+def limits1():
+    db_connection = db.connect(host=app.config["HOST"], user=app.config["USER"], password=app.config["PASSWORD"],
+                               database=app.config["DATABASES"])
+    cursor = db_connection.cursor()
+    cursor.execute(
+        "select * from word_table")
+    word_table = cursor.fetchall()
+
+    return render_template("limits1.html", word_table=word_table)
 
 
 @app.route("/rin_jin/limits/", methods=["GET"])
