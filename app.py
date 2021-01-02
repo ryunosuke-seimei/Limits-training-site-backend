@@ -99,7 +99,7 @@ def delete_db():
     return redirect("https://reina-raft.xyz/rin_jin/index/", code=302)
 
 
-@app.route("/rin_jin/limits1/", methods=["GET"])
+@app.route("/rin_jin/limits/", methods=["GET"])
 def limits1():
     db_connection = db.connect(host=app.config["HOST"], user=app.config["USER"], password=app.config["PASSWORD"],
                                database=app.config["DATABASES"])
@@ -111,41 +111,41 @@ def limits1():
     return render_template("limits1.html", word_table=word_table)
 
 
-@app.route("/rin_jin/limits/", methods=["GET"])
-def limits():
-    db_connection = db.connect(host=app.config["HOST"], user=app.config["USER"], password=app.config["PASSWORD"],
-                               database=app.config["DATABASES"])
-    cursor = db_connection.cursor()
-    cursor.execute(
-        "select * from word_table")
-    word_table = cursor.fetchall()
-
-    return render_template("limits.html", word_table=word_table)
-
-
-@app.route("/rin_jin/limits/start/", methods=["POST"])
-def limits_start():
-    left = request.form["left"]
-    right = request.form["right"]
-
-    db_connection = db.connect(host=app.config["HOST"], user=app.config["USER"], password=app.config["PASSWORD"],
-                               database=app.config["DATABASES"])
-    cursor = db_connection.cursor()
-    cursor.execute(
-        "select * from word_table where id={} limit 1".format(left))
-    word_left = cursor.fetchall()
-
-    cursor = db_connection.cursor()
-    cursor.execute(
-        "select * from word_table where id={} limit 1".format(right))
-    word_right = cursor.fetchall()
-
-    word_table = [list(word_left[0]), list(word_right[0])]
-
-    # print(word_table)
-    # print(word_left)
-    # print(word_right)
-    return render_template("start.html", word_table=word_table)
+# @app.route("/rin_jin/limits/", methods=["GET"])
+# def limits():
+#     db_connection = db.connect(host=app.config["HOST"], user=app.config["USER"], password=app.config["PASSWORD"],
+#                                database=app.config["DATABASES"])
+#     cursor = db_connection.cursor()
+#     cursor.execute(
+#         "select * from word_table")
+#     word_table = cursor.fetchall()
+#
+#     return render_template("limits.html", word_table=word_table)
+#
+#
+# @app.route("/rin_jin/limits/start/", methods=["POST"])
+# def limits_start():
+#     left = request.form["left"]
+#     right = request.form["right"]
+#
+#     db_connection = db.connect(host=app.config["HOST"], user=app.config["USER"], password=app.config["PASSWORD"],
+#                                database=app.config["DATABASES"])
+#     cursor = db_connection.cursor()
+#     cursor.execute(
+#         "select * from word_table where id={} limit 1".format(left))
+#     word_left = cursor.fetchall()
+#
+#     cursor = db_connection.cursor()
+#     cursor.execute(
+#         "select * from word_table where id={} limit 1".format(right))
+#     word_right = cursor.fetchall()
+#
+#     word_table = [list(word_left[0]), list(word_right[0])]
+#
+#     # print(word_table)
+#     # print(word_left)
+#     # print(word_right)
+#     return render_template("start.html", word_table=word_table)
 
 
 if __name__ == '__main__':
