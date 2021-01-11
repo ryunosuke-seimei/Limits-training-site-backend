@@ -64,7 +64,8 @@
                 </div>
             </div>
             <div class="bottom">
-                <input type="button" value="START">
+                <button type="button" class="stop">ストップ</button>
+                <button type="button" class="start">スタート</button>
             </div>
         </div>
 
@@ -79,11 +80,11 @@
             </div>
             <div class="timer-controller">
                 <div class="boot">
-                    <button type="buttons" class="stopbutton" style="display:none;">STOP</button>
-                    <button type="buttons" class="startbutton">STRAT</button>
+                    <button type="buttons" class="stop-button" style="display:none;">STOP</button>
+                    <button type="buttons" class="start-button">STRAT</button>
                 </div>
                 <div class="reset">
-                    <button id="resetbutton">reset</button>
+                    <button id="reset-button">reset</button>
                 </div>
             </div>
         </div>
@@ -99,10 +100,13 @@
         let left_words = [];
         let right_words = [];
         let start_flag = false;
-        let intervalid;
-        let to_timeup = 10;
-        let backstart = to_timeup;
+        let interval_id;
+        let to_time_up = 10;
+        let back_start = to_time_up;
         window.onload = function(){
+            let key = 0;
+            let randStart;
+            let speed = 20;
 
             let target = $(".bords").children(".bord");
             for(let i=0;i<target.length;i++){
@@ -115,57 +119,92 @@
                 titles.push($(child[0]).text());
                 words.push(temp_words);
             }
-            padding();
 
 
+            {#以下ルーレット用#}
+
+            $(".stop").hide();
+            $('.start').show();
+            let randShuffle = function() {
+                if (key > right_words.length) key = 0;
+                $('.left .word').text(left_words[key]);
+                $('.right .word').text(right_words[key]);
+                key++;
+            }
+
+            $('.stop').click(function() {
+                let random_1 = Math.floor(Math.random() * (left_words.length + 1));
+                let random_2 = Math.floor(Math.random() * (right_words.length + 1));
+
+                $(".left .word").text(left_words[random_1]);
+                $('.right .word').text(right_words[random_2]);
+
+                clearInterval(randStart);
+                $(this).hide();
+                $('.start').show();
+            });
+
+            $('.start').click(function() {
+                $(this).hide();
+                $('.stop').show();
+                randStart = setInterval(randShuffle, speed);
+            });
+
+
+            {#以下セレクトボックス用#}
             $(".bord").on("click", function () {
                 let id = $($(this).children("input")[0]).val();
                 change_list(id);
             });
 
 
-            $(".startbutton").click(function(event){
+            {#以下timer用#}
+            padding();
+            $(".start-button").click(function(event){
                 if (start_flag == false) {
-                  intervalid = setInterval(count_down, 1000);
+                  interval_id = setInterval(count_down, 1000);
                   start_flag = true;
                   $(this).hide();
-                  $('.stopbutton').show();
+                  $('.stop-button').show();
                 }
             });
 
-            $(".stopbutton").click(function(evnet){
-                clearInterval(intervalid);
+            $(".stop-button").click(function(evnet){
+                clearInterval(interval_id);
                 start_flag = false;
                 $(this).hide(); //止めるボタンの非表示
-                $('.startbutton').show(); //STARTボタンの表示
+                $('.start-button').show(); //STARTボタンの表示
             });
 
-            $("#resetbutton").click(function(event){
+            $("#reset-button").click(function(event){
                 let timer = document.getElementById("timer");
-                to_timeup = backstart;
+                to_time_up = back_start;
                 padding();
                 // timer.style.color="black";
                 $('#timer').css('color', 'black');
-                clearInterval(intervalid);
+                clearInterval(interval_id);
                 start_flag = false;
 
-                $('.startbutton').show(); //STARTボタンの表示
-                $('.stopbutton').hide();
+                $('.start-button').show(); //STARTボタンの表示
+                $('.stop-button').hide();
             });
             $(".timer-select li").click(function(event) {
                 console.log($($(this).children('input')[0]).val());
-                to_timeup = parseInt($($(this).children('input')[0]).val()) * 60;
-                backstart = to_timeup;
+                to_time_up = parseInt($($(this).children('input')[0]).val()) * 60;
+                back_start = to_time_up;
 
                 let timer = document.getElementById("timer");
-                let min = Math.floor(to_timeup / 60);
-                let sec = (to_timeup % 60);
+                let min = Math.floor(to_time_up / 60);
+                let sec = (to_time_up % 60);
                 min = ('0' + min).slice(-2);
                 sec = ('0' + sec).slice(-2);
                 timer.innerHTML = min + ':' + sec;
             });
 
         }
+
+
+        {#セレクトボックス切り替え用#}
         function change_flag(number){
             switch (number) {
                 case 0:
@@ -196,14 +235,14 @@
                 $(".right .word").text(titles[id]);
             }
         }
+        {#タイマー用関数#}
         function count_down() {
             let timer = document.getElementById("timer");
-            if (to_timeup === 0) {
+            if (to_time_up === 0) {
                 $('#timer').html('Time up!');
                 $('#timer').addClass('red');
-                count_stop();
             } else {
-                to_timeup--;
+                to_time_up--;
                 padding();
             }
         }
@@ -212,8 +251,8 @@
             let min = 0;
             let sec = 0;
             let timer = document.getElementById("timer");
-            min = Math.floor(to_timeup / 60);
-            sec = (to_timeup % 60);
+            min = Math.floor(to_time_up / 60);
+            sec = (to_time_up % 60);
             min = ('0' + min).slice(-2);
             sec = ('0' + sec).slice(-2);
             timer.innerHTML = min + ':' + sec;
