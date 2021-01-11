@@ -70,18 +70,20 @@
 
         <div class="timer">
             <div class="timer-counter">
-                00:00
+                <div id="timer"></div>
             </div>
             <div class="timer-select">
-                <li>30min</li>
-                <li>60min</li>
+                <li>20min <input type="hidden" value="20"></li>
+                <li>30min <input type="hidden" value="30"></li>
+                <li>60min <input type="hidden" value="60"></li>
             </div>
             <div class="timer-controller">
                 <div class="boot">
-                    start
+                    <button type="buttons" class="stopbutton" style="display:none;">STOP</button>
+                    <button type="buttons" class="startbutton">STRAT</button>
                 </div>
                 <div class="reset">
-                    stop
+                    <button id="resetbutton">reset</button>
                 </div>
             </div>
         </div>
@@ -96,7 +98,12 @@
         let titles = [];
         let left_words = [];
         let right_words = [];
+        let start_flag = false;
+        let intervalid;
+        let to_timeup = 10;
+        let backstart = to_timeup;
         window.onload = function(){
+
             let target = $(".bords").children(".bord");
             for(let i=0;i<target.length;i++){
                 let temp_words = [];
@@ -108,12 +115,56 @@
                 titles.push($(child[0]).text());
                 words.push(temp_words);
             }
-            console.log(words);
+            padding();
+
 
             $(".bord").on("click", function () {
                 let id = $($(this).children("input")[0]).val();
                 change_list(id);
             });
+
+
+            $(".startbutton").click(function(event){
+                if (start_flag == false) {
+                  intervalid = setInterval(count_down, 1000);
+                  start_flag = true;
+                  $(this).hide();
+                  $('.stopbutton').show();
+                }
+            });
+
+            $(".stopbutton").click(function(evnet){
+                clearInterval(intervalid);
+                start_flag = false;
+                $(this).hide(); //止めるボタンの非表示
+                $('.startbutton').show(); //STARTボタンの表示
+            });
+
+            $("#resetbutton").click(function(event){
+                let timer = document.getElementById("timer");
+                to_timeup = backstart;
+                padding();
+                // timer.style.color="black";
+                $('#timer').css('color', 'black');
+                clearInterval(intervalid);
+                start_flag = false;
+
+                $('.startbutton').show(); //STARTボタンの表示
+                $('.stopbutton').hide();
+            });
+            $(".timer-select li").click(function(event) {
+                console.log($($(this).children('input')[0]).val());
+                to_timeup = parseInt($($(this).children('input')[0]).val()) * 60;
+                backstart = to_timeup;
+
+                let timer = document.getElementById("timer");
+                let min = Math.floor(to_timeup / 60);
+                let sec = (to_timeup % 60);
+                min = ('0' + min).slice(-2);
+                sec = ('0' + sec).slice(-2);
+                timer.innerHTML = min + ':' + sec;
+            });
+
         }
         function change_flag(number){
             switch (number) {
@@ -144,6 +195,28 @@
                 $(".right .name-id #id").text(id);
                 $(".right .word").text(titles[id]);
             }
+        }
+        function count_down() {
+            let timer = document.getElementById("timer");
+            if (to_timeup === 0) {
+                $('#timer').html('Time up!');
+                $('#timer').addClass('red');
+                count_stop();
+            } else {
+                to_timeup--;
+                padding();
+            }
+        }
+
+        function padding() {
+            let min = 0;
+            let sec = 0;
+            let timer = document.getElementById("timer");
+            min = Math.floor(to_timeup / 60);
+            sec = (to_timeup % 60);
+            min = ('0' + min).slice(-2);
+            sec = ('0' + sec).slice(-2);
+            timer.innerHTML = min + ':' + sec;
         }
     </script>
 {% endblock %}

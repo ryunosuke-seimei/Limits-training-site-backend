@@ -1,6 +1,3 @@
-
-
-
 # @app.route('/rin_jin/index/')
 # def index():
 #     # print(app.config["SERVER"])
