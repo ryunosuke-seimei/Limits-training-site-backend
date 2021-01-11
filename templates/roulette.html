@@ -1,6 +1,149 @@
 {% extends "child_layout.html" %}
 {% block main %}
-    <div class="main">
-        roulette
+    <div class="edit">
+        <div class="top">
+            <div class="left" onclick="change_flag(0);">
+                <div class="change">
+                    No.<span id="id"></span>
+                </div>
+                <div class="title">
+                    name
+                </div>
+            </div>
+            <div class="right" onclick="change_flag(1);">
+                <div class="change">
+                    No.<span id="id"></span>
+                </div>
+                <div class="title">
+                    name
+                </div>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="close">
+                <div class="box">
+                    <li></li>
+                    <li></li>
+                </div>
+            </div>
+            <div class="bords">
+{#                {% for list in lists %}#}
+                {% for number in range(lists|length) %}
+                    <div class="bord">
+                        <input type="hidden" class="id" value="{{ number }}">
+                        {% for target_number in range(1,12) %}
+                            <span>{{ lists[number][target_number] }}</span>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
+    <div class="main">
+
+        <div class="select">
+            <div class="top">
+                <div class="left">
+                    <div class="name-id">
+                        List No.<span id="id"></span>
+                    </div>
+                    <div class="word">
+                        red
+                    </div>
+                </div>
+                <div class="middle">
+                    *
+                </div>
+                <div class="right">
+                    <div class="name-id">
+                        List No.<span id="id"></span>
+                    </div>
+                    <div class="word">
+                        blue
+                    </div>
+                </div>
+            </div>
+            <div class="bottom">
+                <input type="button" value="START">
+            </div>
+        </div>
+
+        <div class="timer">
+            <div class="timer-counter">
+                00:00
+            </div>
+            <div class="timer-select">
+                <li>30min</li>
+                <li>60min</li>
+            </div>
+            <div class="timer-controller">
+                <div class="boot">
+                    start
+                </div>
+                <div class="reset">
+                    stop
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="help">
+
+    </div>
+
+    <script>
+        let flag = true;
+        let words = [];
+        let titles = [];
+        let left_words = [];
+        let right_words = [];
+        window.onload = function(){
+            let target = $(".bords").children(".bord");
+            for(let i=0;i<target.length;i++){
+                let temp_words = [];
+                let child = $(target[i]).children("span");
+                console.log(child);
+                for(let detail_number=1;detail_number<11;detail_number++){
+                    temp_words.push($(child[detail_number]).text());
+                }
+                titles.push($(child[0]).text());
+                words.push(temp_words);
+            }
+            console.log(words);
+
+            $(".bord").on("click", function () {
+                let id = $($(this).children("input")[0]).val();
+                change_list(id);
+            });
+        }
+        function change_flag(number){
+            switch (number) {
+                case 0:
+                    flag = true;
+                    break;
+                case 1:
+                    flag = false;
+                     break;
+            }
+        }
+        function change_list(id){
+            if(flag){
+                console.log(titles[id]);
+                left_words = words[id];
+                $(".left .change #id").text(id);
+                $(".left .title").text(titles[id]);
+
+                $(".left .name-id #id").text(id);
+                $(".left .word").text(titles[id]);
+
+            }else{
+                console.log(titles[id]);
+                right_words = words[id];
+                $(".right .change #id").text(id);
+                $(".right .title").text(titles[id]);
+
+                $(".right .name-id #id").text(id);
+                $(".right .word").text(titles[id]);
+            }
+        }
+    </script>
 {% endblock %}

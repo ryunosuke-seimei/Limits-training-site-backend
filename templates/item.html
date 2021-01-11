@@ -32,12 +32,13 @@
         </div>
         <div class="right">
             <div class="lists">
-                {% for number in range(lists|length) %}
+{#                {% for number in range(lists|length) %}#}
+                {% for list in lists %}
                     <div class="list">
-                        <div class="number">No.{{ number }}</div>
+                        <div class="number">No.{{ list[0] }}</div>
                         <div class="list-name">
-                            {{ lists[number][1] }}
-                            <input type="hidden" value="{{ lists[number][0] }}">
+                            {{ list[1] }}
+                            <input type="hidden" value="{{ list[0] }}">
                         </div>
                     </div>
                 {% endfor %}
