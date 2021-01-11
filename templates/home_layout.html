@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LIMITS</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+<script>
+    function links_item(){
+        location.href = "{{ url_for('index_item') }}";
+    }
+    function links_roulette() {
+        location.href = "{{ url_for('index_roulette') }}";
+    }
+</script>
+<body>
+{% block content %}
+
+{% endblock %}
+</body>
+</html>

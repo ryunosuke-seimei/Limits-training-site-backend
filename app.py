@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect
+from flask import Flask, request, render_template, redirect, url_for, jsonify
 # from flask_cors import CORS
 import mysql.connector as db
 
@@ -13,6 +13,90 @@ app.config.from_pyfile('config.cfg')
 @app.route('/rin_jin/')
 def hello_world():
     return render_template("top_page.html")
+
+
+@app.route('/rin_jin/item')
+def index_item():
+    db_connection = db.connect(host=app.config["HOST"], user=app.config["USER"], password=app.config["PASSWORD"],
+                               database=app.config["DATABASES"])
+    cursor = db_connection.cursor()
+    cursor.execute(
+        "select * from word_table")
+    word_table = cursor.fetchall()
+
+    return render_template("item.html", lists=word_table)
+
+
+@app.route('/rin_jin/insert', methods=["POST"])
+def insert_item():
+    name = request.form["name"]
+    words = [name]
+    for number in range(10):
+        words.append(request.form["form{}".format(number)])
+    join_point = ",".join(words)
+    data_format = ",".join(["%s"] * 11)
+    db_connection = db.connect(host=app.config["HOST"], user=app.config["USER"], password=app.config["PASSWORD"],
+                               database=app.config["DATABASES"])
+    cursor = db_connection.cursor()
+    cursor.execute(
+        "INSERT INTO word_table(name,flag0,flag1,flag2,flag3,flag4,flag5,flag6,flag7,flag8,flag9) values({})".format(
+            data_format), tuple(join_point.split(",")))
+    db_connection.commit()
+    return redirect(url_for("index_item"), code=302)
+
+
+@app.route('/rin_jin/get_detail', methods=["POST"])
+def get_item():
+    ID = request.form["id"]
+    db_connection = db.connect(host=app.config["HOST"], user=app.config["USER"], password=app.config["PASSWORD"],
+                               database=app.config["DATABASES"])
+    cursor = db_connection.cursor()
+    cursor.execute("select * from word_table where id = {}".format(ID))
+    word_table = cursor.fetchone()
+    return jsonify(word_table)
+
+
+@app.route('/rin_jin/update_detail', methods=["POST"])
+def update_item():
+    data = request.json
+    ID = data["id"]
+    name = data["name"]
+    words = data["words"]
+    words.insert(0, name)
+    data_format = ""
+    for number in range(len(words)):
+        if number == 0:
+            data_format += "name='" + words[number] + "'"
+        else:
+            data_format += ",flag{}='".format(str(number - 1)) + words[number] + "' "
+
+    db_connection = db.connect(host=app.config["HOST"], user=app.config["USER"], password=app.config["PASSWORD"],
+                               database=app.config["DATABASES"])
+    cursor = db_connection.cursor()
+    cursor.execute(
+        "update word_table set {} where id ={}".format(data_format, ID))
+    db_connection.commit()
+
+    return jsonify("ok")
+
+
+@app.route('/rin_jin/delete_detail', methods=["POST"])
+def delete_item():
+    db_connection = db.connect(host=app.config["HOST"], user=app.config["USER"], password=app.config["PASSWORD"],
+                               database=app.config["DATABASES"])
+    ID = request.form["id"]
+    cursor = db_connection.cursor()
+    cursor.execute(
+        "update word_table set delete_flag=TRUE where id ={}".format(ID))
+    db_connection.commit()
+
+    return redirect(url_for("index_item"), code=302)
+
+
+@app.route('/rin_jin/roulette')
+def index_roulette():
+    return render_template("roulette.html")
+
 
 
 # @app.route('/rin_jin/index/')

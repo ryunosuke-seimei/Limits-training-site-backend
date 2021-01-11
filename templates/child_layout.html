@@ -1,7 +1,6 @@
 {% extends "home_layout.html" %}
 {% block content %}
-
-    <section>
+    <header>
         <div class="title">
             LIMITS
         </div>
@@ -9,5 +8,8 @@
             <li onclick="links_item();">ITEM</li>
             <li onclick="links_roulette();">ROULETTE</li>
         </div>
-    </section>
+    </header>
+    {% block main%}
+
+    {% endblock %}
 {% endblock %}
