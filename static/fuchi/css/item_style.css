@@ -1,0 +1,194 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans Condensed', sans-serif;
+}
+body{
+  display: inline-flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+}
+header{
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100px;
+
+  box-sizing: content-box;
+  border-bottom: 5px solid black;
+}
+header .title{
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 100%;
+  font-size: 40px;
+}
+header .links{
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 300px;
+  height: 100%;
+  font-size: 25px;
+}
+header .links li{
+  list-style: none;
+}
+
+.main{
+  display: inline-flex;
+  flex-direction: row;
+  padding: 10px 20px;
+  height: calc(100% - 120px);
+  width: calc(100% - 40px);
+}
+.main .left{
+  display: inline-block;
+  padding: 10px;
+  width: calc(30% - 20px);
+  height: calc(100% - 20px);
+
+  background-color: rgba(250, 250, 250, 0.9);
+  /* border: 1px solid black; */
+}
+.main .left form{
+  display: inline-flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+}
+.main .left form input:nth-child(1){
+  display: inline-block;
+  width: 90%;
+  padding:5px;
+}
+.main .left .line{
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 90%;
+}
+.main .left .line label{
+  display: inline-block;
+  width: 20%;
+}
+.main .left .line input{
+  display: inline-block;
+  width: 70%;
+  padding:5px;
+
+}
+.main .left form input[type="submit"]{
+  display: inline-block;
+  width: 90%;
+  padding:5px;
+}
+
+
+.main .allow{
+  display: inline-block;
+  width:10%;
+  height: 100%;
+}
+
+
+.main .right{
+  display: inline-flex;
+  flex-direction: row;
+  width: 60%;
+  height: 100%;
+
+  background-color: rgba(250, 250, 250, 0.9);
+  /* border: 1px solid black; */
+}
+.main .right .lists, .main .right .edit{
+  display: inline-flex;
+  flex-direction: column;
+  padding: 10px;
+  width: calc(50% - 20px);
+  height: calc(100% - 20px);
+}
+
+.main .right .lists{
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.main .right .lists .list{
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 90%;
+  margin: 10px;
+  padding:  10px 0;
+  background-color: rgba(170, 170, 170, 0.3);
+  box-shadow: 0px 1px 1px 1px rgba(0,0,0,0.4);
+}
+.main .right .lists .list .number{
+  display: inline-flex;
+  width: 20%;
+}
+.main .right .lists .list .list-name{
+  display: inline-flex;
+  width: 70%;
+}
+
+.main .right .edit{
+  flex-direction: column;
+  justify-content: space-around;
+}
+.main .right .edit .details-form{
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+  height: 90%;
+}
+.main .right .edit .details-form input:nth-child(2){
+  display: inline-block;
+  width: 90%;
+  padding:5px;
+}
+.main .right .edit .details-form .line{
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 90%;
+}
+.main .right .edit .details-form .line label{
+  display: inline-block;
+  width: 20%;
+}
+.main .right .edit .details-form .line input{
+  display: inline-block;
+  width: 70%;
+  padding:5px;
+}
+.main .right .edit .details-form button{
+  display: inline-block;
+  width: 90%;
+  padding:5px;
+}
+.main .right .edit form{
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 10%;
+}
+.main .right .edit form input{
+  display: inline-flex;
+  width: 100%;
+}

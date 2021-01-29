@@ -1,29 +1,50 @@
 {% extends "child_layout.html" %}
 {% block main %}
+   <link rel="stylesheet" href="{{url_for('static',filename = 'fuchi/css/item_style.css')}}">
     <div class="main">
         <div class="left">
             <form class="" action="{{url_for('insert_item')}}" method="post">
                   <input type="text" name="name" required>
-                  <label for="form0">1</label>
-                  <input type="text" name="form0" required>
-                  <label for="form1">2</label>
-                  <input type="text" name="form1" required>
-                  <label for="form2">3</label>
-                  <input type="text" name="form2" required>
-                  <label for="form3">4</label>
-                  <input type="text" name="form3" required>
-                  <label for="form4">5</label>
-                  <input type="text" name="form4" required>
-                  <label for="form5">6</label>
-                  <input type="text" name="form5" required>
-                  <label for="form6">7</label>
-                  <input type="text" name="form6" required>
-                  <label for="form7">8</label>
-                  <input type="text" name="form7" required>
-                  <label for="form8">9</label>
-                  <input type="text" name="form8" required>
-                  <label for="form9">10</label>
-                  <input type="text" name="form9" required>
+                  <div class="line">
+                    <label for="form0">1</label>
+                    <input type="text" name="form0" required>
+                  </div>
+                  <div class="line">
+                    <label for="form1">2</label>
+                    <input type="text" name="form1" required>
+                  </div>
+                  <div class="line">
+                    <label for="form2">3</label>
+                    <input type="text" name="form2" required>
+                  </div>
+                  <div class="line">
+                    <label for="form3">4</label>
+                    <input type="text" name="form3" required>
+                  </div>
+                  <div class="line">
+                    <label for="form4">5</label>
+                    <input type="text" name="form4" required>
+                  </div>
+                  <div class="line">
+                    <label for="form5">6</label>
+                    <input type="text" name="form5" required>
+                  </div>
+                  <div class="line">
+                    <label for="form6">7</label>
+                    <input type="text" name="form6" required>
+                  </div>
+                  <div class="line">
+                    <label for="form7">8</label>
+                    <input type="text" name="form7" required>
+                  </div>
+                  <div class="line">
+                    <label for="form8">9</label>
+                    <input type="text" name="form8" required>
+                  </div>
+                  <div class="line">
+                    <label for="form9">10</label>
+                    <input type="text" name="form9" required>
+                  </div>
                   <input type="submit" value="Add">
             </form>
         </div>
@@ -47,26 +68,46 @@
                 <div class="details-form">
                     <input type="hidden" name="id" required>
                     <input type="text" name="name" required>
-                    <label for="form0">1</label>
-                    <input type="text" name="form0" required>
-                    <label for="form1">2</label>
-                    <input type="text" name="form1" required>
-                    <label for="form2">3</label>
-                    <input type="text" name="form2" required>
-                    <label for="form3">4</label>
-                    <input type="text" name="form3" required>
-                    <label for="form4">5</label>
-                    <input type="text" name="form4" required>
-                    <label for="form5">6</label>
-                    <input type="text" name="form5" required>
-                    <label for="form6">7</label>
-                    <input type="text" name="form6" required>
-                    <label for="form7">8</label>
-                    <input type="text" name="form7" required>
-                    <label for="form8">9</label>
-                    <input type="text" name="form8" required>
-                    <label for="form9">10</label>
-                    <input type="text" name="form9" required>
+                    <div class="line">
+                        <label for="form0">1</label>
+                        <input type="text" name="form0" required>
+                    </div>
+                    <div class="line">
+                        <label for="form1">2</label>
+                        <input type="text" name="form1" required>
+                    </div>
+                    <div class="line">
+                        <label for="form2">3</label>
+                        <input type="text" name="form2" required>
+                    </div>
+                    <div class="line">
+                        <label for="form3">4</label>
+                        <input type="text" name="form3" required>
+                    </div>
+                    <div class="line">
+                        <label for="form4">5</label>
+                        <input type="text" name="form4" required>
+                    </div>
+                    <div class="line">
+                        <label for="form5">6</label>
+                        <input type="text" name="form5" required>
+                    </div>
+                    <div class="line">
+                        <label for="form6">7</label>
+                        <input type="text" name="form6" required>
+                    </div>
+                    <div class="line">
+                        <label for="form7">8</label>
+                        <input type="text" name="form7" required>
+                    </div>
+                    <div class="line">
+                        <label for="form8">9</label>
+                        <input type="text" name="form8" required>
+                    </div>
+                    <div class="line">
+                        <label for="form9">10</label>
+                        <input type="text" name="form9" required>
+                    </div>
                     <input type="button" onclick="detail_send();" value="リストの更新">
                 </div>
                 <form class="delete-form" action="{{url_for('delete_item')}}" method="post">
@@ -79,7 +120,7 @@
     <script>
     window.onload = function(){
         $(".list").on("click", function(){
-            let child = $($(this).children(".list-name")).children("input");
+            let child = $($(this).children(".list-name")).find("input");
             detail_get($(child).val());
         });
     }
@@ -99,7 +140,7 @@
     }
     function detail_show(data){
         $("#delete_id").val(data[0]);
-        let target = $(".details-form").children("input");
+        let target = $(".details-form").find("input");
         for(let i=0;i<target.length - 1;i++){
             let child_target = $(target[i]);
             child_target.val(data[i]);
@@ -107,7 +148,7 @@
         }
     }
     function detail_send(){
-        let target = $(".details-form").children("input");
+        let target = $(".details-form").find("input");
         let number = $(target[0]).val();
         let name = $(target[1]).val();
         let words = [];
