@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="{{url_for('static',filename = 'fuchi/css/roulette_style_smart.css')}}"type="text/css" media="(min-width: 320px) and (max-width: 699px)">
     <div class="edit">
         <div class="top">
-            <div class="left" onclick="change_flag(0);">
+            <div class="left" onclick="change_flag(0);open_bords();">
                 <div class="change">
                     No.<span id="id"></span>
                 </div>
@@ -12,7 +12,10 @@
                     name
                 </div>
             </div>
-            <div class="right" onclick="change_flag(1);">
+            <div class="middle">
+
+            </div>
+            <div class="right" onclick="change_flag(1);open_bords();">
                 <div class="change">
                     No.<span id="id"></span>
                 </div>
@@ -23,7 +26,7 @@
         </div>
         <div class="bottom">
             <div class="close">
-                <div class="box">
+                <div class="box" onclick="close_bords();">
                     <li></li>
                     <li></li>
                 </div>
@@ -41,62 +44,76 @@
             </div>
         </div>
     </div>
-    <div class="main">
 
-        <div class="top">
-            <div class="left">
-                <div class="name-id">
-                    List No.<span id="id"></span>
-                </div>
-                <div class="word">
-                    red
-                </div>
-            </div>
-            <div class="middle">
-                *
-            </div>
-            <div class="right">
-                <div class="name-id">
-                    List No.<span id="id"></span>
-                </div>
-                <div class="word">
-                    blue
-                </div>
-            </div>
-        </div>
+    <div class="main-bord">
+      <div class="main">
+          <div class="top">
+              <div class="left">
+                  <div class="name-id">
+                      List No.<span id="id"></span>
+                  </div>
+                  <div class="word">
+                      red
+                  </div>
+              </div>
+              <div class="middle">
+                  *
+              </div>
+              <div class="right">
+                  <div class="name-id">
+                      List No.<span id="id"></span>
+                  </div>
+                  <div class="word">
+                      blue
+                  </div>
+              </div>
+          </div>
 
         <div class="bottom">
-            <div class="roulette-controller">
-                <button type="button" class="stop">ストップ</button>
-                <button type="button" class="start">スタート</button>
-            </div>
-            <div class="timer">
-                <div class="timer-counter">
-                    <div id="timer"></div>
-                </div>
-                <div class="timer-select">
-                    <li>20min <input type="hidden" value="20"></li>
-                    <li>30min <input type="hidden" value="30"></li>
-                    <li>60min <input type="hidden" value="60"></li>
-                </div>
-                <div class="timer-controller">
-                    <div class="boot">
-                        <button type="buttons" class="stop-button" style="display:none;">STOP</button>
-                        <button type="buttons" class="start-button">STRAT</button>
-                    </div>
-                    <div class="reset">
-                        <button id="reset-button">reset</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="help">
 
+          <div class="roulette-controller">
+              <button type="button" class="stop">ストップ</button>
+              <button type="button" class="start">スタート</button>
+          </div>
+
+          <div class="timer">
+
+              <div class="timer-counter">
+                  <div id="timer"></div>
+              </div>
+
+              <div class="timer-select">
+                  <li>20min <input type="hidden" value="20"></li>
+                  <li>30min <input type="hidden" value="30"></li>
+                  <li>60min <input type="hidden" value="60"></li>
+              </div>
+
+              <div class="timer-controller">
+                  <div class="boot">
+                      <button type="buttons" class="stop-button" style="display:none;">STOP</button>
+                      <button type="buttons" class="start-button">STRAT</button>
+                  </div>
+                  <div class="reset">
+                      <button id="reset-button">reset</button>
+                  </div>
+              </div>
+
+            </div>
+
+          </div>
+    </div>
+
+    <div class="help">
+        <div class="edit-controller controller" onclick="open_edit();">
+          EDIT
+        </div>
+        <div class="close-controller controller" onclick="close_edit();">
+          Close
+        </div>
     </div>
 
     <script>
-        let flag = true;
+                let flag = true;
         let words = [];
         let titles = [];
         let left_words = [];
@@ -107,18 +124,18 @@
         let back_start = to_time_up;
 
         let sub_box_flag = 0;
-
         window.onload = function(){
             $(".sub-box").on('click', function(event) {
-                if(sub_box_flag == 0){
-                    $(this).addClass('active');
-                    $(".links").addClass('links-active');
-                    sub_box_flag = 1;
-                }else if (sub_box_flag == 1) {
-                    $(this).removeClass('active');
-                    $(".links").removeClass('links-active');
-                    sub_box_flag = 0;
-                }
+              if(sub_box_flag == 0){
+                $(this).addClass('active');
+                $(".links").addClass('links-active');
+                sub_box_flag = 1;
+              }else if (sub_box_flag == 1) {
+                $(this).removeClass('active');
+                $(".links").removeClass('links-active');
+                sub_box_flag = 0;
+              }
+              /* Act on the event */
             });
             let key = 0;
             let randStart;
@@ -137,7 +154,7 @@
             }
 
 
-            {#以下ルーレット用#}
+
 
             $(".stop").hide();
             $('.start').show();
@@ -167,14 +184,15 @@
             });
 
 
-            {#以下セレクトボックス用#}
+
             $(".bord").on("click", function () {
                 let id = $($(this).children("input")[0]).val();
                 change_list(id);
+                close_bords();
             });
 
 
-            {#以下timer用#}
+
             padding();
             $(".start-button").click(function(event){
                 if (start_flag == false) {
@@ -217,10 +235,13 @@
                 timer.innerHTML = min + ':' + sec;
             });
 
+            $(".close-controller").hide();
+
+
         }
 
 
-        {#セレクトボックス切り替え用#}
+
         function change_flag(number){
             switch (number) {
                 case 0:
@@ -251,7 +272,7 @@
                 $(".right .word").text(titles[id]);
             }
         }
-        {#タイマー用関数#}
+
         function count_down() {
             let timer = document.getElementById("timer");
             if (to_time_up === 0) {
@@ -273,5 +294,24 @@
             sec = ('0' + sec).slice(-2);
             timer.innerHTML = min + ':' + sec;
         }
+
+        function open_edit(){
+          $(".edit").addClass('edit-open');
+          $(".edit-controller").hide();
+          $(".close-controller").show();
+
+        }
+        function close_edit(){
+          $(".edit").removeClass('edit-open');
+          $(".edit-controller").show();
+          $(".close-controller").hide();
+        }
+        function open_bords(){
+          $(".edit .bottom").addClass('bottom-open');
+        }
+        function close_bords(){
+          $(".edit .bottom").removeClass('bottom-open');
+        }
     </script>
+
 {% endblock %}
