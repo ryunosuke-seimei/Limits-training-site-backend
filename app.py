@@ -21,7 +21,7 @@ def index_item():
                                database=app.config["DATABASES"])
     cursor = db_connection.cursor()
     cursor.execute(
-        "select * from word_table")
+        "select * from word_table where delete_flag = 0")
     word_table = cursor.fetchall()
 
     return render_template("item.html", lists=word_table)
@@ -99,10 +99,11 @@ def index_roulette():
                                database=app.config["DATABASES"])
     cursor = db_connection.cursor()
     cursor.execute(
-        "select * from word_table")
+        "select * from word_table where delete_flag = 0")
     word_table = cursor.fetchall()
 
     return render_template("roulette.html", lists=word_table)
+
 
 if __name__ == '__main__':
     app.run(host=app.config["HOST"])

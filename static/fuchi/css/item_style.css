@@ -40,6 +40,12 @@ header .links{
 header .links li{
   list-style: none;
 }
+header .sub-box{
+  display: none;
+}
+.main .back{
+  display: none;
+}
 
 .main{
   display: inline-flex;
@@ -99,6 +105,9 @@ header .links li{
   display: inline-block;
   width:10%;
   height: 100%;
+}
+.main .allow li{
+  display: none;
 }
 
 
