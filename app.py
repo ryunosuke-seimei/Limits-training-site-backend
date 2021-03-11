@@ -27,6 +27,18 @@ def index_item():
     return render_template("item.html", lists=word_table)
 
 
+@app.route('/rin_jin/roulette')
+def index_roulette():
+    db_connection = db.connect(host=app.config["HOST"], user=app.config["USER"], password=app.config["PASSWORD"],
+                               database=app.config["DATABASES"])
+    cursor = db_connection.cursor()
+    cursor.execute(
+        "select * from word_table where delete_flag = 0")
+    word_table = cursor.fetchall()
+
+    return render_template("roulette.html", lists=word_table)
+
+
 @app.route('/rin_jin/insert', methods=["POST"])
 def insert_item():
     name = request.form["name"]
@@ -92,17 +104,6 @@ def delete_item():
 
     return redirect(url_for("index_item"), code=302)
 
-
-@app.route('/rin_jin/roulette')
-def index_roulette():
-    db_connection = db.connect(host=app.config["HOST"], user=app.config["USER"], password=app.config["PASSWORD"],
-                               database=app.config["DATABASES"])
-    cursor = db_connection.cursor()
-    cursor.execute(
-        "select * from word_table where delete_flag = 0")
-    word_table = cursor.fetchall()
-
-    return render_template("roulette.html", lists=word_table)
 
 
 if __name__ == '__main__':
