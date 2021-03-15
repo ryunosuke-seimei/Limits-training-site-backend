@@ -1,4 +1,4 @@
-{% extends "child_layout.html" %}
+{% extends "old2/child_layout.html" %}
 {% block main %}
     <link rel="stylesheet" href="{{url_for('static',filename = 'fuchi/css/item_style.css')}}" type="text/css" media="(min-width: 700px)">
     <link rel="stylesheet" href="{{url_for('static',filename = 'fuchi/css/item_style_smart.css')}}"type="text/css" media="(min-width: 320px) and (max-width: 699px)">
@@ -8,7 +8,9 @@
             <div class="back">
                 <li>戻る</li>
             </div>
-            <form class="" action="{{url_for('insert_item')}}" method="post">
+{#            <form class="" action="{{url_for('insert_item')}}" method="post">#}
+            <form class="" action="">
+
                   <input type="text" name="name" required>
                   <div class="line">
                     <label for="form0">1</label>
@@ -118,7 +120,9 @@
                     </div>
                     <input type="button" onclick="detail_send();" value="リストの更新">
                 </div>
-                <form class="delete-form" action="{{url_for('delete_item')}}" method="post">
+{#                <form class="delete-form" action="{{url_for('delete_item')}}" method="post">#}
+                <form class="delete-form" action="" method="post">
+
                     <input type="hidden" id="delete_id" name="id" required>
                     <input type="submit" value="このListを削除する">
                 </form>
@@ -156,7 +160,7 @@
     }
     function detail_get(number){
         $.ajax({
-              url: '{{ url_for('get_item') }}',
+              url: '{{ url_for('API_get') }}',
               type: 'POST',
               data: {id: number}
             })
@@ -187,7 +191,7 @@
             words.push(child_target.val());
         }
         $.ajax({
-              url: '{{ url_for('update_item') }}',
+              url: '{{ url_for('API_update') }}',
               type: 'POST',
               contentType: 'application/json',
               data: JSON.stringify({id: number, name:name, words:words})
