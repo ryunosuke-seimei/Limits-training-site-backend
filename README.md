@@ -24,3 +24,11 @@ DELETEの部分がaxiosを使用してのjsonデータ送信がうまくいか�
 
 JQueryからのVueの以降中　itemはDELETEが完成すると完成だと思う
 
+## 3/17
+DELETEの部分は完成した　 DELETE　PUT POSTでデータの受け取り形式が異なる点は納得がいかないけど
+
+それ以外はまぁ十分にできているかな〜って感じ
+
+[https://teratail.com/questions/296013](参考リンク)
+↑axiosではbodyが送れない
+

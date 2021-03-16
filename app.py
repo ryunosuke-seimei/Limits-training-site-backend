@@ -115,17 +115,13 @@ def API_update():
 
 @app.route('/rin_jin/item-api', methods=["DELETE"])
 def API_delete():
-    print(request.get_data())
-    data = json.loads(request.json["data"])
-    ID = data["id"]
-    print(ID)
-    # db_connection = db.connect(host=app.config["HOST"], user=app.config["USER"], password=app.config["PASSWORD"],
-    #                            database=app.config["DATABASES"])
-    # ID = request.form["id"]
-    # cursor = db_connection.cursor()
-    # cursor.execute(
-    #     "update word_table set delete_flag=TRUE where id ={}".format(ID))
-    # db_connection.commit()
+    ID = json.loads(request.get_data())["id"]
+    db_connection = db.connect(host=app.config["HOST"], user=app.config["USER"], password=app.config["PASSWORD"],
+                               database=app.config["DATABASES"])
+    cursor = db_connection.cursor()
+    cursor.execute(
+        "update word_table set delete_flag=TRUE where id ={}".format(ID))
+    db_connection.commit()
     return jsonify("ok")
 
 
