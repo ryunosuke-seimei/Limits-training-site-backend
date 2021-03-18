@@ -32,3 +32,7 @@ DELETEの部分は完成した　 DELETE　PUT POSTでデータの受け取り�
 [https://teratail.com/questions/296013](参考リンク)
 ↑axiosではbodyが送れない
 
+## 3/18
+Vue版のitemが完成しました！
+そんな感じで全体デザインを作ろうかと思ってます！
+
