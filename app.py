@@ -11,35 +11,6 @@ app = Flask(__name__, instance_relative_config=True)
 app.config.from_pyfile('config.cfg')
 
 
-@app.route('/rin_jin/')
-def hello_world():
-    return render_template("develop/home.html")
-
-
-@app.route('/rin_jin/item')
-def index_item():
-    db_connection = db.connect(host=app.config["HOST"], user=app.config["USER"], password=app.config["PASSWORD"],
-                               database=app.config["DATABASES"])
-    cursor = db_connection.cursor()
-    cursor.execute(
-        "select id, name from word_table where delete_flag = 0")
-    word_table = cursor.fetchall()
-
-    return render_template("old2/item.html", lists=word_table)
-
-
-@app.route('/rin_jin/roulette')
-def index_roulette():
-    db_connection = db.connect(host=app.config["HOST"], user=app.config["USER"], password=app.config["PASSWORD"],
-                               database=app.config["DATABASES"])
-    cursor = db_connection.cursor()
-    cursor.execute(
-        "select id, name from word_table where delete_flag = 0")
-    word_table = cursor.fetchall()
-
-    return render_template("develop/roulette.html", lists=word_table)
-
-
 @app.route('/rin_jin/item-api', methods=["GET"])
 def API_get():
     flag = request.args.get("flag")
