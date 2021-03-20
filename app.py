@@ -14,6 +14,7 @@ app.config.from_pyfile('config.cfg')
 @app.route('/rin_jin/item-api', methods=["GET"])
 def API_get():
     flag = request.args.get("flag")
+    print(flag)
     if flag == "0":
         # print("All")
         db_connection = db.connect(host=app.config["HOST"], user=app.config["USER"], password=app.config["PASSWORD"],
@@ -22,7 +23,7 @@ def API_get():
         cursor.execute("select id, name from word_table where delete_flag = 0")
         word_table = cursor.fetchall()
 
-    else:
+    elif flag == "1":
         # print("A")
         ID = request.args.get("id")
         db_connection = db.connect(host=app.config["HOST"], user=app.config["USER"], password=app.config["PASSWORD"],
@@ -30,6 +31,20 @@ def API_get():
         cursor = db_connection.cursor()
         cursor.execute("select id,name,flag0,flag1,flag2,flag3,flag4,flag5,flag6,flag7,flag8,flag9 from word_table where id = {}".format(ID))
         word_table = cursor.fetchone()
+
+    elif flag == "2":
+        db_connection = db.connect(host=app.config["HOST"], user=app.config["USER"], password=app.config["PASSWORD"],
+                                   database=app.config["DATABASES"])
+        cursor = db_connection.cursor()
+        cursor.execute("select name,flag0,flag1,flag2,flag3,flag4,flag5,flag6,flag7,flag8,flag9 from word_table where delete_flag = 0")
+        word_table = cursor.fetchall()
+        result = []
+        for word in word_table:
+            temp_result = {"title": word[0], "value": word[1:]}
+            result.append(temp_result)
+        word_table = result
+    else:
+        word_table = "non data"
 
     return jsonify(word_table)
 
