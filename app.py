@@ -1,10 +1,10 @@
 from flask import Flask, request, render_template, redirect, url_for, jsonify
-# from flask_cors import CORS
+from flask_cors import CORS
 import mysql.connector as db
 import json
 
 app = Flask(__name__, instance_relative_config=True)
-# CORS(app)
+CORS(app)
 
 # instance/config.cfg と指定しなくてよい
 # cfg は全て大文字
