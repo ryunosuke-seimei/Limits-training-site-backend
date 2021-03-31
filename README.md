@@ -77,6 +77,6 @@ vue版のrouletteがパーツが完成した
 ひとまず完成してdevelopをpush しといた！！
 
 # Front project
-
-[https://github.com/ryunosuke-seimei/Limits-training-site](front)
+[https://teratail.com/questions/296013](参考リンク)
+[https://github.com/ryunosuke-seimei/Limits-training-site](フロントエンド)
 
