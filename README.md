@@ -25,7 +25,7 @@ REST APIに改修予定ですが、リプレイス。
 
 ## DEMO Page
 
-[LIMTS 練習用サイト](https://reina-raft.xyz/rin_jin)
+[LIMTS 練習用サイト](https://www.reina-ryu-f.xyz/limits-training)
 
 時々、メンテをしているので止めていることがあります。
 そいった場合は連絡ください。
