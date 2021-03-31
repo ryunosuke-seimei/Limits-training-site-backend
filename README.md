@@ -79,6 +79,6 @@ vue版のrouletteがパーツが完成した
 # Front project
 フロントはVueで作成
 
-[https://github.com/ryunosuke-seimei/Limits-training-site](Front end)
+[https://github.com/ryunosuke-seimei/Limits-training-site](フロントだよ)
 
 
