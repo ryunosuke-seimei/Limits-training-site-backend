@@ -52,7 +52,7 @@ DELETEの部分は完成した　 DELETE　PUT POSTでデータの受け取り�
 
 それ以外はまぁ十分にできているかな〜って感じ
 
-[https://teratail.com/questions/296013](参考リンク)
+[参考リンク](https://teratail.com/questions/296013)
 ↑axiosではbodyが送れない
 
 ## 3/18
@@ -79,6 +79,6 @@ vue版のrouletteがパーツが完成した
 # Front project
 フロントはVueで作成
 
-[https://github.com/ryunosuke-seimei/Limits-training-site](フロントだよ)
+[フロントだよ](https://github.com/ryunosuke-seimei/Limits-training-site)
 
 
