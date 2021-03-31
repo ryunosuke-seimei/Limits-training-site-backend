@@ -10,7 +10,6 @@ Vue , Flask
 API的な部分
 - Item REST API風
 
-
 ## DEMO Page
 
 [LIMTS 練習用サイト](https://www.reina-ryu-f.xyz/limits-training)
@@ -77,5 +76,6 @@ vue版のrouletteがパーツが完成した
 デザインをpush
 ひとまず完成してdevelopをpush しといた！！
 
-なので、もしも実際の競技と異なる点が出てきたら、教えてください。ということも踏まえて、データベースの構造とかも一緒に公開できたらなっと思ってます。
+# Front project
+[https://github.com/ryunosuke-seimei/Limits-training-site](front)
 
